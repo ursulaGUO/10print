@@ -50,11 +50,11 @@ function dist(x0, y0, x1, y1) {
 function circle(side_length, x_off, y_off, radius) {
   let center_x = side_length / 2 + x_off;
   let center_y = side_length / 2 + y_off;
-  for (let i = 0; i < side_length; i++) {
-    for (let j = 0; j < side_length; j++) {
-      let now = dist(center_x, center_y, i, j);
-      if (now < radius + 1 && now >= radius) {
-        process.stdout.write("0");
+  for (let i = 0; i < side_length; i+=1) {
+    for (let j = 0; j < side_length; j+=1) {
+      let now = dist(center_x, center_y, j, i);
+      if (Math.round(now) == Math.round(radius) - 1) {
+        process.stdout.write("o");
       } else {
         process.stdout.write(" ");
       }
@@ -62,6 +62,8 @@ function circle(side_length, x_off, y_off, radius) {
     process.stdout.write("\n");
   }
 }
+
+console.log(dist(0,0,2.5,2.5));
 
 max = process.stdout.columns;
 circle(max, 0, 0, max/2);
